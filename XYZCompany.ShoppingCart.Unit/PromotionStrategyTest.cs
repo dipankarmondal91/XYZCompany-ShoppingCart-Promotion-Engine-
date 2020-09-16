@@ -4,59 +4,76 @@ using System.Collections.Generic;
 using System.Text;
 using XYZ.Company.ShoppingCart.Promotion.Calculation;
 using XYZ.Company.ShoppingCart.Promotion.Calculation.promotionstrategy;
+using XYZCompany.ShoppingCart.Promotion.Data.Repository;
+using XYZCompany.ShoppingCart.Promotion.Data.types;
 
 namespace XYZCompany.ShoppingCart.Unit
 {
     public class PromotionStrategyTest
     {
         private IPromotionStrategy promotionStrategy;
+        private Promotion.Data.Repository.IQuery query;
         [SetUp]
         public void Setup()
         {
-           //  promotionStrategy = new Query();
+            //  promotionStrategy = new Query();
+            query = new Query();
         }
 
         [Test]
         public void GetQuntityStrategyResult()
         {
-            promotionStrategy = new QuantityPromotion(3, new Promotion.Data.Models.Sku() { Id = 'A', Price = 50 }, 150);
+            
 
-            var cartList = new List<Cart>();
-            cartList.Add(new Cart()
+            var cartList = new List<CartWithPromotionType>();
+            cartList.Add(new CartWithPromotionType()
             {
-                Quantity = 5,
-                SkuId = 'A'
+                cart = new Cart()
+                {
+                    Quantity = 5,
+                    SkuId = 'A'
+                },
+                promotionType = PromotionTypes.Quantity
             });
-            var result = promotionStrategy.ApplyPromotion(cartList, 0);
-            Assert.AreEqual(250, result);
+            promotionStrategy = new QuantityPromotion(query);
+            var result = promotionStrategy.ApplyPromotion(cartList);
+            Assert.AreEqual(230, result);
         }
         [Test]
         public void GetQuntityStrategyResultForOneItem()
         {
-            promotionStrategy = new QuantityPromotion(3, new Promotion.Data.Models.Sku() { Id = 'A', Price = 50 }, 150);
-
-            var cartList = new List<Cart>();
-            cartList.Add(new Cart()
+            var cartList = new List<CartWithPromotionType>();
+            cartList.Add(new CartWithPromotionType()
             {
-                Quantity = 1,
-                SkuId = 'A'
+                cart = new Cart()
+                {
+                    Quantity = 1,
+                    SkuId = 'A'
+                },
+                promotionType = PromotionTypes.Quantity
             });
-            var result = promotionStrategy.ApplyPromotion(cartList, 0);
+            promotionStrategy = new QuantityPromotion(query);
+            var result = promotionStrategy.ApplyPromotion(cartList);
             Assert.AreEqual(50, result);
         }
         [Test]
         public void GetComboStrategyResultOnlyFirtOfCombo()
         {
-            promotionStrategy = new ComboPromotion(new List<char>() { 'C', 'D' }, new Promotion.Data.Models.Sku() { Id = 'C', Price = 50 }, 60);
-
-            var cartList = new List<Cart>();
-            cartList.Add(new Cart()
+            var cartList = new List<CartWithPromotionType>();
+            cartList.Add(new CartWithPromotionType()
             {
-                Quantity = 1,
-                SkuId = 'C'
+                cart = new Cart()
+                {
+                    Quantity = 1,
+                    SkuId = 'C'
+                },
+                promotionType = PromotionTypes.Combo
             });
-            var result = promotionStrategy.ApplyPromotion(cartList, 0);
-            Assert.AreEqual(250, result);
+            promotionStrategy = new ComboPromotion(query);
+
+           
+            var result = promotionStrategy.ApplyPromotion(cartList);
+            Assert.AreEqual(20, result);
         }
     }
 }

@@ -2,41 +2,45 @@
 using System.Collections.Generic;
 using System.Text;
 using XYZCompany.ShoppingCart.Promotion.Data.Models;
+using XYZCompany.ShoppingCart.Promotion.Data.Repository;
 
 namespace XYZ.Company.ShoppingCart.Promotion.Calculation.promotionstrategy
 {
     public class ComboPromotion : IPromotionStrategy
     {
-        public ComboPromotionRule comboPromotionRule { get; set; }
+      //  private ComboPromotionRule ComboPromotionRule { get; set; }
+        private IQuery _query;
 
-        public ComboPromotion(List<char> combos, Sku sku, double promotionAmount)
+        public ComboPromotion(IQuery query)
         {
-            Combos = combos;
-            Sku = sku;
-            PromotionAmount = promotionAmount;
+           // ComboPromotionRule = comboPromotionRule;
+            _query = query;
         }
-        public double ApplyPromotion(List<Cart> checkoutContent, int index)
+        public double ApplyPromotion(List<CartWithPromotionType> checkoutContent)
         {
-            //if(checkoutContent.Count -1 == index)
-            //{
-            //    return Sku.Price;
-            //}
-            //else
-            //{
-            var cartItem = checkoutContent[index];
-            var nextComboItem = Combos.Find(x => x != Sku.Id);
-            var nextComboIndex = checkoutContent.FindIndex(index, x => x.SkuId == nextComboItem);
+            double result = 0;
+            var qualifiedItems = checkoutContent.FindAll(x => x.promotionType == XYZCompany.ShoppingCart.Promotion.Data.types.PromotionTypes.Combo);
+            var rule = _query.GetComboPromotionRules();
+            var productList =_query.GetSkus();
+            var comboFirstItemCount = qualifiedItems.FindAll(x => x.cart.SkuId == rule.Combos[0]).Count;
+            var comboSecondItemCount = qualifiedItems.FindAll(x => x.cart.SkuId == rule.Combos[1]).Count;
 
-            if (nextComboItem == -1)
+            
+            if(comboFirstItemCount == comboSecondItemCount)
             {
-                return Sku.Price * cartItem.Quantity;
-            }
-            else
+                result = comboFirstItemCount * rule.PromotionAmount;
+            }else if(comboFirstItemCount < comboSecondItemCount)
             {
-                return 0;
+                result = (comboFirstItemCount * rule.PromotionAmount)
+                    + ((comboSecondItemCount - comboFirstItemCount)) * (productList.Find(x => x.Id == rule.Combos[1]).Price);
+            } else
+            {
+                result = (comboSecondItemCount * rule.PromotionAmount)
+                    + ((comboFirstItemCount - comboSecondItemCount)) * (productList.Find(x => x.Id == rule.Combos[0]).Price);
             }
 
-            //}
+
+            return result;
 
 
         }
