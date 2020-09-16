@@ -104,5 +104,27 @@ namespace XYZCompany.ShoppingCart.Unit
             Assert.AreEqual(280, result);
 
         }
+        [Test]
+        public void CalculateTotalOrderAmount_Input4()
+        {
+            var cartItmes = new List<Cart>()
+            {
+                new Cart()
+                {
+                    Quantity = 3,
+                    SkuId = 'C'
+                },
+                new Cart()
+                {
+                    Quantity = 5,
+                    SkuId = 'D'
+                }
+            };
+
+            var result = promotionEngine.CalculateTotalOrderAmount(cartItmes);
+
+            Assert.AreEqual(120, result);
+
+        }
     }
 }

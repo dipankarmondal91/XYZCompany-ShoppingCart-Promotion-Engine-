@@ -20,11 +20,13 @@ namespace XYZ.Company.ShoppingCart.Promotion.Calculation.promotionstrategy
             var qualifiedItems = checkoutContent.FindAll(x => x.promotionType == XYZCompany.ShoppingCart.Promotion.Data.types.PromotionTypes.Combo);
             var rule = _query.GetComboPromotionRule();
             var productList =_query.GetSkus();
-            var comboFirstItemCount = qualifiedItems.FindAll(x => x.cart.SkuId == rule.Combos[0]).Count;
-            var comboSecondItemCount = qualifiedItems.FindAll(x => x.cart.SkuId == rule.Combos[1]).Count;
+            var comboFirstItemList = qualifiedItems.FindAll(x => x.cart.SkuId == rule.Combos[0]);
+            var comboFirstItemCount = CountTotalQuantity(comboFirstItemList);
+            var comboSecondItemList = qualifiedItems.FindAll(x => x.cart.SkuId == rule.Combos[1]);
+            var comboSecondItemCount = CountTotalQuantity(comboSecondItemList);
 
-            
-            if(comboFirstItemCount == comboSecondItemCount)
+
+            if (comboFirstItemCount == comboSecondItemCount)
             {
                 result = comboFirstItemCount * rule.PromotionAmount;
             }else if(comboFirstItemCount < comboSecondItemCount)
@@ -39,8 +41,17 @@ namespace XYZ.Company.ShoppingCart.Promotion.Calculation.promotionstrategy
 
 
             return result;
+        }
+        private int CountTotalQuantity(List<CartWithPromotionType> comboCart)
+        {
+            int sum = 0;
 
+            foreach (var item in comboCart)
+            {
+                sum += item.cart.Quantity;
+            }
 
+            return sum;
         }
     }
 }
