@@ -7,10 +7,7 @@ namespace XYZ.Company.ShoppingCart.Promotion.Calculation.promotionstrategy
 {
     public class ComboPromotion : IPromotionStrategy
     {
-        public List<char> Combos { get; set; }
-        public Sku Sku { get; set; }
-
-        public double PromotionAmount { get; set; }
+        public ComboPromotionRule comboPromotionRule { get; set; }
 
         public ComboPromotion(List<char> combos, Sku sku, double promotionAmount)
         {

@@ -16,6 +16,24 @@ namespace XYZCompany.ShoppingCart.Promotion.Data.Repository
             return promotion;
         }
 
+        public Dictionary<char, QuantityPromotionRule> GetQuantityPromotionRules()
+        {
+            var rule = new Dictionary<char, QuantityPromotionRule>();
+
+            rule.Add('A', new QuantityPromotionRule()
+            {
+                PromotionAmount = 130,
+                PromotionQuatity = 3
+            });
+            rule.Add('B', new QuantityPromotionRule()
+            {
+                PromotionAmount = 45,
+                PromotionQuatity = 2
+            });
+
+            return rule;
+        }
+
         public List<Sku> GetSkus()
         {
             var skuList = new List<Sku>();

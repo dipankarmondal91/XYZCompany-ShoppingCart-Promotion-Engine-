@@ -20,12 +20,18 @@ namespace Tests
             CollectionAssert.AllItemsAreNotNull(result);
         }
 
-
-            [Test]
+        
+        [Test]
         public void GetPromotionCriterias()
         {
             var result = query.GetPromotion();
             CollectionAssert.AllItemsAreNotNull(result.Criterias);
+        }
+        public void GetQualityPromotionRules()
+        {
+            var result = query.GetQuantityPromotionRules();
+            Assert.AreEqual(130, result['A'].PromotionAmount);
+            
         }
     }
 }
