@@ -8,19 +8,17 @@ namespace XYZ.Company.ShoppingCart.Promotion.Calculation.promotionstrategy
 {
     public class ComboPromotion : IPromotionStrategy
     {
-      //  private ComboPromotionRule ComboPromotionRule { get; set; }
         private IQuery _query;
 
         public ComboPromotion(IQuery query)
         {
-           // ComboPromotionRule = comboPromotionRule;
             _query = query;
         }
         public double ApplyPromotion(List<CartWithPromotionType> checkoutContent)
         {
             double result = 0;
             var qualifiedItems = checkoutContent.FindAll(x => x.promotionType == XYZCompany.ShoppingCart.Promotion.Data.types.PromotionTypes.Combo);
-            var rule = _query.GetComboPromotionRules();
+            var rule = _query.GetComboPromotionRule();
             var productList =_query.GetSkus();
             var comboFirstItemCount = qualifiedItems.FindAll(x => x.cart.SkuId == rule.Combos[0]).Count;
             var comboSecondItemCount = qualifiedItems.FindAll(x => x.cart.SkuId == rule.Combos[1]).Count;

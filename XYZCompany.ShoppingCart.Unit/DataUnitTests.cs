@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using XYZCompany.ShoppingCart.Promotion.Data.Repository;
+using XYZCompany.ShoppingCart.Promotion.Data.types;
 
 namespace Tests
 {
@@ -37,8 +38,15 @@ namespace Tests
         [Test]
         public void GetComboPromotionRules()
         {
-            var result = query.GetComboPromotionRules();
+            var result = query.GetComboPromotionRule();
             Assert.AreEqual(30, result.PromotionAmount);
+
+        }
+        [Test]
+        public void GetPromotionPairs()
+        {
+            var result = query.GetSkuPromotionPairs();
+            Assert.AreEqual(PromotionTypes.Quantity, result['A']);
 
         }
     }

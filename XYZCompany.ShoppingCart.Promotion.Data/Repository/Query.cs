@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using XYZCompany.ShoppingCart.Promotion.Data.Models;
+using XYZCompany.ShoppingCart.Promotion.Data.types;
 
 namespace XYZCompany.ShoppingCart.Promotion.Data.Repository
 {
     public class Query : IQuery
     {
-        public ComboPromotionRule GetComboPromotionRules()
+        public ComboPromotionRule GetComboPromotionRule()
         {
             return new ComboPromotionRule()
             {
@@ -41,6 +42,18 @@ namespace XYZCompany.ShoppingCart.Promotion.Data.Repository
             });
 
             return rule;
+        }
+
+        public Dictionary<char, PromotionTypes> GetSkuPromotionPairs()
+        {
+            var promotionPairs = new Dictionary<char, PromotionTypes>();
+
+            promotionPairs.Add('A', PromotionTypes.Quantity);
+            promotionPairs.Add('B', PromotionTypes.Quantity);
+            promotionPairs.Add('C', PromotionTypes.Combo);
+            promotionPairs.Add('D', PromotionTypes.Combo);
+
+            return promotionPairs;
         }
 
         public List<Sku> GetSkus()

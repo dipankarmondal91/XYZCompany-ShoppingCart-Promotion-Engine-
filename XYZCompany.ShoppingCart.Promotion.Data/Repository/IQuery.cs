@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using XYZCompany.ShoppingCart.Promotion.Data;
 using XYZCompany.ShoppingCart.Promotion.Data.Models;
+using XYZCompany.ShoppingCart.Promotion.Data.types;
 
 namespace XYZCompany.ShoppingCart.Promotion.Data.Repository
 {
@@ -12,6 +13,8 @@ namespace XYZCompany.ShoppingCart.Promotion.Data.Repository
         Models.Promotion GetPromotion();
 
         Dictionary<char, QuantityPromotionRule> GetQuantityPromotionRules();
-        ComboPromotionRule GetComboPromotionRules();
+        ComboPromotionRule GetComboPromotionRule();
+
+        Dictionary<char, PromotionTypes> GetSkuPromotionPairs();
     }
 }
