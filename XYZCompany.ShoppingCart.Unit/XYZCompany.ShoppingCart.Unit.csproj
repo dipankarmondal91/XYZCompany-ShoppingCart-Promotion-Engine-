@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\XYZ.Company.ShoppingCart.Promotion.Calculation\XYZ.Company.ShoppingCart.Promotion.Calculation.csproj" />
     <ProjectReference Include="..\XYZCompany.ShoppingCart.Promotion.Data\XYZCompany.ShoppingCart.Promotion.Data.csproj" />
   </ItemGroup>
 

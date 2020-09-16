@@ -7,6 +7,6 @@ namespace XYZ.Company.ShoppingCart.Promotion.Calculation.promotionstrategy
 {
     public interface IPromotionStrategy
     {
-        double ApplyPromotion(List<Sku> skus, int index);
+        double ApplyPromotion(List<Cart> checkoutContent, int index);
     }
 }
