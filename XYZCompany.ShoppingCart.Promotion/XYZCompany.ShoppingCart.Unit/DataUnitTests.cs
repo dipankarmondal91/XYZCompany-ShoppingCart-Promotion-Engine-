@@ -19,5 +19,13 @@ namespace Tests
             Assert.AreEqual('A', result[0].Id);
             CollectionAssert.AllItemsAreNotNull(result);
         }
+
+
+            [Test]
+        public void GetPromotionCriterias()
+        {
+            var result = query.GetPromotion();
+            CollectionAssert.AllItemsAreNotNull(result.Criterias);
+        }
     }
 }

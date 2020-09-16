@@ -6,6 +6,6 @@ namespace XYZCompany.ShoppingCart.Promotion.Data.Models
 {
     public class Promotion
     {
-        public List<string> Rules { get; set; }
+        public List<string> Criterias { get; set; }
     }
 }

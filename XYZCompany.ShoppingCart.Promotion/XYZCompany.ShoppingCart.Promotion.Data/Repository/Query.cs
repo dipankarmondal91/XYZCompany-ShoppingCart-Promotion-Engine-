@@ -7,6 +7,15 @@ namespace XYZCompany.ShoppingCart.Promotion.Data.Repository
 {
     public class Query : IQuery
     {
+        public Models.Promotion GetPromotion()
+        {
+            var promotion = new Models.Promotion();
+
+            promotion.Criterias = new List<string>(){ "3 of A's for 130", "2 of B's for 45", "C & D for 30"};
+
+            return promotion;
+        }
+
         public List<Sku> GetSkus()
         {
             var skuList = new List<Sku>();
