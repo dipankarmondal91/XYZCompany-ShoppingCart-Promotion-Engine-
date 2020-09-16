@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XYZCompany.ShoppingCart.Promotion.Data", "XYZCompany.ShoppingCart.Promotion.Data\XYZCompany.ShoppingCart.Promotion.Data.csproj", "{B5F5AB13-07FA-4BA4-A5A1-D22114B86465}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XYZCompany.ShoppingCart.Promotion.Data", "XYZCompany.ShoppingCart.Promotion.Data\XYZCompany.ShoppingCart.Promotion.Data.csproj", "{B5F5AB13-07FA-4BA4-A5A1-D22114B86465}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XYZCompany.ShoppingCart.Unit", "XYZCompany.ShoppingCart.Unit\XYZCompany.ShoppingCart.Unit.csproj", "{86B4511D-2BE5-406C-ACBD-A47DE7D90FCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XYZCompany.ShoppingCart.Unit", "XYZCompany.ShoppingCart.Unit\XYZCompany.ShoppingCart.Unit.csproj", "{86B4511D-2BE5-406C-ACBD-A47DE7D90FCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XYZ.Company.ShoppingCart.Promotion.Calculation", "XYZ.Company.ShoppingCart.Promotion.Calculation\XYZ.Company.ShoppingCart.Promotion.Calculation.csproj", "{C7D92CF5-B583-407C-B0BC-5BC62F61E811}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{86B4511D-2BE5-406C-ACBD-A47DE7D90FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86B4511D-2BE5-406C-ACBD-A47DE7D90FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86B4511D-2BE5-406C-ACBD-A47DE7D90FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7D92CF5-B583-407C-B0BC-5BC62F61E811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D92CF5-B583-407C-B0BC-5BC62F61E811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7D92CF5-B583-407C-B0BC-5BC62F61E811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D92CF5-B583-407C-B0BC-5BC62F61E811}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
