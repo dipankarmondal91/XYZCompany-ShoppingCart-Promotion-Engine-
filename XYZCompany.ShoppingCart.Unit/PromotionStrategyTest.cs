@@ -44,5 +44,19 @@ namespace XYZCompany.ShoppingCart.Unit
             var result = promotionStrategy.ApplyPromotion(cartList, 0);
             Assert.AreEqual(50, result);
         }
+        [Test]
+        public void GetComboStrategyResultOnlyFirtOfCombo()
+        {
+            promotionStrategy = new ComboPromotion(new List<char>() { 'C', 'D' }, new Promotion.Data.Models.Sku() { Id = 'C', Price = 50 }, 60);
+
+            var cartList = new List<Cart>();
+            cartList.Add(new Cart()
+            {
+                Quantity = 1,
+                SkuId = 'C'
+            });
+            var result = promotionStrategy.ApplyPromotion(cartList, 0);
+            Assert.AreEqual(250, result);
+        }
     }
 }
