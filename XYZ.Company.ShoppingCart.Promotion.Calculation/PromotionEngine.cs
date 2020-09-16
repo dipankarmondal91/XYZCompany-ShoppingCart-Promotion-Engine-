@@ -14,7 +14,7 @@ namespace XYZ.Company.ShoppingCart.Promotion.Calculation
             _query = query;
         }
 
-        public double CalculateTotalOrder(List<Cart> cartItems)
+        public double CalculateTotalOrderAmount(List<Cart> cartItems)
         {
             double result = 0;
 
