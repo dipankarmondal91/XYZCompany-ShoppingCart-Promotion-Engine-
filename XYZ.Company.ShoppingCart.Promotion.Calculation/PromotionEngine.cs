@@ -8,21 +8,25 @@ namespace XYZ.Company.ShoppingCart.Promotion.Calculation
 {
     public class PromotionEngine
     {
-        private readonly IPromotionStrategy _promotionStrategy;
         private readonly IQuery _query;
-        public PromotionEngine(IPromotionStrategy promotionStrategy, IQuery query)
+        public PromotionEngine( IQuery query)
         {
-            _promotionStrategy = promotionStrategy;
             _query = query;
         }
 
         public double CalculateTotalOrder(List<Cart> cartItems)
         {
-            var result = 0;
+            double result = 0;
 
             var cartWithPromotion = AllocatePromotions(cartItems);
 
+            // quantity promotion
+            IPromotionStrategy qunatityPromotion = new QuantityPromotion(_query);
+            result += qunatityPromotion.ApplyPromotion(cartWithPromotion);
 
+            // quantity promotion
+            IPromotionStrategy comboPromotion = new ComboPromotion(_query);
+            result += comboPromotion.ApplyPromotion(cartWithPromotion);
 
             return result;
         }
