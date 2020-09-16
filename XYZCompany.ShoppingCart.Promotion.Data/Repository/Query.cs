@@ -7,6 +7,15 @@ namespace XYZCompany.ShoppingCart.Promotion.Data.Repository
 {
     public class Query : IQuery
     {
+        public ComboPromotionRule GetComboPromotionRules()
+        {
+            return new ComboPromotionRule()
+            {
+                Combos = new List<char>() { 'C', 'D' },
+                PromotionAmount = 30
+            };
+        }
+
         public Models.Promotion GetPromotion()
         {
             var promotion = new Models.Promotion();

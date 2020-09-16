@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using XYZCompany.ShoppingCart.Promotion.Data.types;
 
-namespace XYZ.Company.ShoppingCart.Promotion.Calculation
+namespace XYZCompany.ShoppingCart.Promotion.Data.Models
 {
     public class ComboPromotionRule
     {

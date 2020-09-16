@@ -27,11 +27,19 @@ namespace Tests
             var result = query.GetPromotion();
             CollectionAssert.AllItemsAreNotNull(result.Criterias);
         }
+        [Test]
         public void GetQualityPromotionRules()
         {
             var result = query.GetQuantityPromotionRules();
             Assert.AreEqual(130, result['A'].PromotionAmount);
             
+        }
+        [Test]
+        public void GetComboPromotionRules()
+        {
+            var result = query.GetComboPromotionRules();
+            Assert.AreEqual(30, result.PromotionAmount);
+
         }
     }
 }

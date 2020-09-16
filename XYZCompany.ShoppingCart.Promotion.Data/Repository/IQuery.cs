@@ -12,5 +12,6 @@ namespace XYZCompany.ShoppingCart.Promotion.Data.Repository
         Models.Promotion GetPromotion();
 
         Dictionary<char, QuantityPromotionRule> GetQuantityPromotionRules();
+        ComboPromotionRule GetComboPromotionRules();
     }
 }
